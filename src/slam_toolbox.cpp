@@ -169,7 +169,7 @@ void SlamToolbox::SetROSInterfaces(ros::NodeHandle& node)
   ssClear_manual_ = node.advertiseService("clear_changes", &SlamToolbox::ClearChangesCallback, this);
   ssSerialize_ = node.advertiseService("serialize_map", &SlamToolbox::SerializePoseGraphCallback, this);
   ssLoadMap_ = node.advertiseService("deserialize_map", &SlamToolbox::DeserializePoseGraphCallback, this);
-  scan_filter_sub_ = std::make_unique<message_filters::Subscriber<sensor_msgs::LaserScan> >(node, "/scan", 5);
+  scan_filter_sub_ = std::make_unique<message_filters::Subscriber<sensor_msgs::LaserScan> >(node, "/sensors/lidar/scan", 5);
   scan_filter_ = std::make_unique<tf::MessageFilter<sensor_msgs::LaserScan> >(*scan_filter_sub_, *tf_, odom_frame_, 5);
   scan_filter_->registerCallback(boost::bind(&SlamToolbox::LaserCallback, this, _1));
   marker_publisher_ = node.advertise<visualization_msgs::MarkerArray>("karto_graph_visualization",1);
@@ -1067,7 +1067,7 @@ bool SlamToolbox::DeserializePoseGraphCallback(
       while (true)
       {
         ROS_INFO("Waiting for scan to get metadata...");
-        boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/scan"), ros::Duration(1.0));
+        boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/sensors/lidar/scan"), ros::Duration(1.0));
         if (scan)
         {
           ROS_INFO("Got scan!");
