@@ -6603,7 +6603,7 @@ namespace karto
     std::cout<<"Dataset <- m_Objects\n";
     ar & BOOST_SERIALIZATION_NVP(m_Objects);
     std::cout<<"Dataset <- m_pDatasetInfo\n";
-    ar & BOOST_SERIALIZATION_NVP(m_pDatasetInfo);
+    // ar & BOOST_SERIALIZATION_NVP(m_pDatasetInfo);
     std::cout<<"**Finished serializing Dataset**\n";
   }
 

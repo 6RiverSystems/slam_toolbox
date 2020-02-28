@@ -1064,17 +1064,17 @@ bool SlamToolbox::DeserializePoseGraphCallback(
     {
       karto::SensorManager::GetInstance()->RegisterSensor(pSensor);
 
-      while (true)
-      {
-        ROS_INFO("Waiting for scan to get metadata...");
-        boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/sensors/lidar/scan"), ros::Duration(1.0));
-        if (scan)
-        {
-          ROS_INFO("Got scan!");
-          lasers_[laser_frame_] = laser_assistant_->toLaserMetadata(*scan);
-          break;
-        }
-      }
+      // while (true)
+      // {
+      //   ROS_INFO("Waiting for scan to get metadata...");
+      //   boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/sensors/lidar/scan"), ros::Duration(1.0));
+      //   if (scan)
+      //   {
+      //     ROS_INFO("Got scan!");
+      //     lasers_[laser_frame_] = laser_assistant_->toLaserMetadata(*scan);
+      //     break;
+      //   }
+      // }
     }
     else
     {
