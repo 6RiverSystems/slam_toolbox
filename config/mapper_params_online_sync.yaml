@@ -12,13 +12,13 @@ ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
 ceres_preconditioner: SCHUR_JACOBI
 ceres_trust_strategy: LEVENBERG_MARQUARDT
 ceres_dogleg_type: TRADITIONAL_DOGLEG
-ceres_loss_function: None
+ceres_loss_function: HuberLoss
 
 # ROS Parameters
 odom_frame: odom
 map_frame: map
 base_frame: base_footprint
-laser_frame: base_laser_link
+laser_frame: sick_lidar
 mode: mapping #localization
 debug_logging: false
 throttle_scans: 1
