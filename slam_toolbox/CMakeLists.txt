@@ -37,7 +37,7 @@ find_package(CSparse REQUIRED)
 find_package(G2O REQUIRED)
 find_package(Cholmod REQUIRED)
 find_package(LAPACK REQUIRED)
-find_package(Ceres REQUIRED COMPONENTS SuiteSparse)
+find_package(Ceres 1.14.0 REQUIRED COMPONENTS SuiteSparse)
 find_package(rostest REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
