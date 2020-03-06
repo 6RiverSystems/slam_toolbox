@@ -4,18 +4,18 @@ ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
 ceres_preconditioner: SCHUR_JACOBI
 ceres_trust_strategy: LEVENBERG_MARQUARDT
 ceres_dogleg_type: TRADITIONAL_DOGLEG
-ceres_loss_function: None
+ceres_loss_function: HuberLoss
 
 # ROS Parameters
 odom_frame: odom
 map_frame: map
 base_frame: base_link
 scan_topic: /sensors/lidar/scan
-mode: mapping #localization
+mode: localization #localization
 
 # if you'd like to start localizing on bringup in a map and pose
-#map_file_name: test_steve
-#map_start_pose: [5.0, 1.0, 0.0]
+map_file_name: /tmp/stagfull271
+map_start_pose: [-24.94, 59.70, -1.50]
 
 debug_logging: false
 throttle_scans: 1
