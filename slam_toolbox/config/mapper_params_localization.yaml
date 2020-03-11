@@ -10,12 +10,14 @@ ceres_loss_function: HuberLoss
 odom_frame: odom
 map_frame: map
 base_frame: base_link
-scan_topic: /sensors/lidar/scan
+scan_topic: /scan
 mode: localization #localization
 
 # if you'd like to start localizing on bringup in a map and pose
-map_file_name: /tmp/stagfull271
-map_start_pose: [-24.94, 59.70, -1.50]
+map_file_name: /tmp/sfnottSerializeFull
+# map_file_name: /tmp/stagfull271
+map_start_pose: [-8.38, -32.61, 3.10]
+# map_start_pose: [-24.94, 59.70, -1.50]
 
 debug_logging: false
 throttle_scans: 1

@@ -1,6 +1,6 @@
 <launch>
 <param name="/use_sim_time" value="true" />
-  <node pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox"  output="screen" >
+  <node pkg="slam_toolbox" type="localization_slam_toolbox_node" name="slam_toolbox"  output="screen"  >
     <rosparam command="load" file="$(find slam_toolbox)/config/mapper_params_localization.yaml" />
   </node>
    <!-- <node name="tf_remove_frames" pkg="srsnode_localization"
@@ -11,7 +11,8 @@
       - odom
     </rosparam>
     launch-prefix="gdb -ex run args" 
-    launch-prefix="gdb args"
+    launch-prefix="gdb args" 
+    launch-prefix="xterm -e gdbargs"
   </node> -->
 
 </launch>

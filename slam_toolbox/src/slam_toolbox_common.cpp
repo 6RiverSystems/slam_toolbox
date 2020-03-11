@@ -114,7 +114,7 @@ void SlamToolbox::setParams(ros::NodeHandle& private_nh)
   private_nh.param("base_frame", base_frame_, std::string("base_footprint"));
   private_nh.param("resolution", resolution_, 0.05);
   private_nh.param("map_name", map_name_, std::string("/map"));
-  private_nh.param("scan_topic", scan_topic_, std::string("/sensors/lidar/scan"));
+  private_nh.param("scan_topic", scan_topic_, std::string("/scan"));
   private_nh.param("throttle_scans", throttle_scans_, 1);
   private_nh.param("enable_interactive_mode", enable_interactive_mode_, false);
 
@@ -375,10 +375,12 @@ tf2::Stamped<tf2::Transform> SlamToolbox::setTransformFromPoses(
   }
 
   // set map to odom for our transformation thread to publish
+  ROS_INFO(" MAP TO ODOM MUTEX LOCK");
   boost::mutex::scoped_lock lock(map_to_odom_mutex_);
   map_to_odom_ = tf2::Transform(tf2::Quaternion( odom_to_map.getRotation() ),
     tf2::Vector3( odom_to_map.getOrigin() ) ).inverse();
 
+  ROS_INFO("Returning odom to map");
   return odom_to_map;
 }
 

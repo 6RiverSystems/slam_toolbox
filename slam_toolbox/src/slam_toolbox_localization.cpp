@@ -172,6 +172,7 @@ LocalizedRangeScan* LocalizationSlamToolbox::addScan(
     range_scan = nullptr;
   } else {
     // compute our new transform
+    ROS_INFO("Setting Transform from Poses");
     setTransformFromPoses(range_scan->GetCorrectedPose(), karto_pose,
       scan->header.stamp, update_reprocessing_transform);
   }
@@ -184,6 +185,7 @@ void LocalizationSlamToolbox::localizePoseCallback(const
   geometry_msgs::PoseWithCovarianceStampedConstPtr& msg)
 /*****************************************************************************/
 {
+  ROS_INFO("localizePoseCallback");
   if (processor_type_ != PROCESS_LOCALIZATION)
   {
     ROS_ERROR("LocalizePoseCallback: Cannot process localization command "
