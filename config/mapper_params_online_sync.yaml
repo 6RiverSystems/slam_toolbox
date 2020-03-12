@@ -19,8 +19,8 @@ odom_frame: odom
 map_frame: map
 base_frame: base_footprint
 laser_frame: sick_lidar
-mode: mapping #localization
-debug_logging: false
+mode: localization  #mapping 
+debug_logging: true
 throttle_scans: 1
 publish_occupancy_map: true
 transform_publish_period: 0.02 #if 0 never publishes odometry

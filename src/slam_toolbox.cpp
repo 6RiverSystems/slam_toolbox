@@ -648,6 +648,7 @@ bool SlamToolbox::AddScan(
     update_offset = true;
     if (processor_type_ == PROCESS_LOCALIZATION)
     {
+      ROS_INFO("PROCESS TYPE IS LOCALIZATION");
       localization_pose_set_ = true;
       processor_type_ = PROCESS_LOCALIZATION;
     }
@@ -658,6 +659,7 @@ bool SlamToolbox::AddScan(
   }
   else if (processor_type_ == PROCESS_LOCALIZATION)
   {
+    ROS_INFO("PROCESS TYPE IS LOCALIZATION IN ELSE IF");
     processed = mapper_->ProcessLocalization(range_scan);
   }
   else
@@ -1026,6 +1028,7 @@ bool SlamToolbox::DeserializePoseGraphCallback(
 
     solver_->Reset();
 
+
     VerticeMap mapper_vertices = mapper->GetGraph()->GetVertices();
     VerticeMap::iterator vertex_map_it = mapper_vertices.begin();
     for(vertex_map_it; vertex_map_it != mapper_vertices.end(); ++vertex_map_it)
@@ -1064,17 +1067,17 @@ bool SlamToolbox::DeserializePoseGraphCallback(
     {
       karto::SensorManager::GetInstance()->RegisterSensor(pSensor);
 
-      // while (true)
-      // {
-      //   ROS_INFO("Waiting for scan to get metadata...");
-      //   boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/sensors/lidar/scan"), ros::Duration(1.0));
-      //   if (scan)
-      //   {
-      //     ROS_INFO("Got scan!");
-      //     lasers_[laser_frame_] = laser_assistant_->toLaserMetadata(*scan);
-      //     break;
-      //   }
-      // }
+      while (true)
+      {
+        ROS_INFO("Waiting for scan to get metadata...");
+        boost::shared_ptr<sensor_msgs::LaserScan const> scan = ros::topic::waitForMessage<sensor_msgs::LaserScan>(std::string("/sensors/lidar/scan"), ros::Duration(1.0));
+        if (scan)
+        {
+          ROS_INFO("Got scan!");
+          lasers_[laser_frame_] = laser_assistant_->toLaserMetadata(*scan);
+          break;
+        }
+      }
     }
     else
     {
