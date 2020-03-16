@@ -5,5 +5,16 @@
   <!-- launch-prefix="$(arg launch-prefix)"> -->
     <rosparam command="load" file="$(find slam_toolbox)/config/mapper_params_online_sync.yaml" />
   </node>
+   <node name="tf_remove_frames" pkg="srsnode_localization"
+      type="tf_remove_frames.py">
+    <remap from="tf_out" to="/tf" />
+    <rosparam param="remove_frames">
+      - map
+      - odom
+    </rosparam>
+    <!-- launch-prefix="gdb -ex run args" 
+    launch-prefix="gdb args" 
+    launch-prefix="xterm -e gdbargs" -->
+  </node> 
 
 </launch>
